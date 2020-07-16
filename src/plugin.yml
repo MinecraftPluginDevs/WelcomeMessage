@@ -1,0 +1,7 @@
+name: WelcomeMessage
+description: Shows users a welcome message when they join
+version: 1
+main: com.jackthewebdev.WelcomeMessage.Core
+commands:
+  testing:
+    description: ehh

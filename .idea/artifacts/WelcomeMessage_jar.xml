@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WelcomeMessage:jar">
+    <output-path>$PROJECT_DIR$/../../../Coding/Minecraft Plugins/Server/plugins</output-path>
+    <root id="archive" name="WelcomeMessage.jar">
+      <element id="module-output" name="WelcomeMessage" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Coding/Minecraft Plugins/Server/spigot-1.15.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
