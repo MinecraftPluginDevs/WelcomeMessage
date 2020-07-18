@@ -3,7 +3,7 @@ description: Shows users a welcome message when they join
 version: 1
 main: com.jackthewebdev.WelcomeMessage.Core
 commands:
-  setplayercolor:
+  setjoincolor:
     description: set the color of the players name (you can also edit the config file)
   setjoinmessage:
     description: Sets the join message
