@@ -9,6 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import static net.minecraft.server.v1_15_R1.Items.I;
+
 public class Core extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
@@ -25,14 +27,22 @@ public class Core extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(command.getName().equalsIgnoreCase("setplayercolor")){
-            String color = args[1];
-            if(color.startsWith("ChatColor.")) {
-                this.getConfig().set("color", color);
-                ChatColor colorthing = new ChatColor(this.getConfig().getString("color"));
-                sender.sendMessage("Set the player name color to:" + this.getConfig().get("color") + "this");
-            }else{
-                sender.sendMessage("Please include a valid color. The color blue would be: ChatColor.BLUE red would be ChatColor.RED");
+            String color = args[0];
+            this.getConfig().set("color", color);
+            sender.sendMessage("Set the player name color to: " + ChatColor.valueOf(this.getConfig().get("color").toString()) + "this");
+            return true;
+        }
+        if(command.getName().equalsIgnoreCase("setjoinmessage")){
+            StringBuilder buffer = new StringBuilder();
+
+            // change the starting i value to pick what argument to start from
+            // 1 is the 2nd argument.
+            for(int i = 0; i < args.length; i++)
+            {
+                buffer.append(' ').append(args[i]);
             }
+            this.getConfig().set("message",buffer.toString());
+            sender.sendMessage("Set the message to: "+this.getConfig().get("message").toString()+", "+ChatColor.valueOf(this.getConfig().get("color").toString())+"[player username]");
             return true;
         }
         return false;
@@ -40,6 +50,6 @@ public class Core extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
         Player p = event.getPlayer();
-        p.sendMessage("Welcome To The Server, "+this.getConfig().getString("color")+p.getName().toString());
+        p.sendMessage( this.getConfig().get("message")+", "+ChatColor.valueOf(this.getConfig().get("color").toString())+p.getName().toString());
     }
 }

@@ -1,1 +1,2 @@
-color: ChatColor.BLUE
+color: BLUE
+message: You Can Change this message by using /setjoinmessage
